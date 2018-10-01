@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "GuiKnob.h"
 
 
 class UrbanKnob;
@@ -22,6 +23,8 @@ public:
     void setPosition(glm::vec2 pos);
     void setRigs(float inner, float outer);
 
+     void setvalue(float innerValue, float outerValue);
+
 private:
 
     glm::vec2 mCenterPos;
@@ -29,5 +32,7 @@ private:
     float mInnerRad;
     float mOuterRad;
 
+    GuiKnobRef  	mInnerKnob;
+    GuiKnobRef  	mOuterKnob;
 
 };

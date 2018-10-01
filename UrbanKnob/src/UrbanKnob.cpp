@@ -1,21 +1,39 @@
 #include "UrbanKnob.h"
 
-void UrbanKnob::setup() {}
+void UrbanKnob::setup() {
+
+
+
+  //knobs
+  mInnerKnob = GuiKnob::create();
+  mInnerKnob->setRad(100);
+  mInnerKnob->setPosition(glm::vec2(ofGetWidth() / 2.0, ofGetHeight() / 2.0));
+
+  //knobs
+  mOuterKnob = GuiKnob::create();
+  mOuterKnob->setRad(235);
+  mOuterKnob->setPosition(glm::vec2(ofGetWidth() / 2.0, ofGetHeight() / 2.0));
+}
 
 //--------------------------------------------------------------
 void UrbanKnob::draw() {
-  ofSetColor(0, 155, 150);
-  ofDrawCircle(mCenterPos, mOuterRad);
 
-  // display rotation of the circle
+  //small ring outer
+  //ofSetColor(90, 200, 180, 150);
+  //ofDrawCircle(mCenterPos, 220);
 
-  ofSetColor(50, 155, 250);
-  ofDrawCircle(mCenterPos, mInnerRad);
+  //ofSetColor(0);
+  //ofDrawCircle(mCenterPos, 220*0.75);
 
-  // display rotation of the circle.
+
+  mOuterKnob->draw();
+  mOuterKnob->drawArc();
+
+  mInnerKnob->draw();
+  mInnerKnob->drawArc();
 
   // marker
-  ofSetColor(50, 50, 50);
+  ofSetColor(100, 100, 100);
   ofDrawRectangle(mCenterPos.x - mInnerRad / 2.0,
                   mCenterPos.y - mInnerRad / 2.0, mInnerRad, mInnerRad);
 }
@@ -33,4 +51,9 @@ void UrbanKnob::setPosition(glm::vec2 pos) {
 void UrbanKnob::setRigs(float inner, float outer) {
   mOuterRad = outer;
   mInnerRad = inner;
+}
+
+void UrbanKnob::setvalue(float innerValue, float outerValue){
+  mInnerKnob->setvalue(outerValue);
+  mOuterKnob->setvalue(innerValue);
 }

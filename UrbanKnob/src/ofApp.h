@@ -2,7 +2,12 @@
 
 #include "ofMain.h"
 
+//addons
+#include "ofxBox2d.h"
+
+//files
 #include "UrbanKnob.h"
+#include "GuiKnob.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,6 +28,17 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		UrbanKnobRef mUrbanKnob;
+
+
+		//particle physics
+		ofxBox2d        box2d;   // the box2d world
+		std::vector     <std::shared_ptr<ofxBox2dCircle> > circles; // default box2d circles
+		bool					  mEnableParticles;
+
+		UrbanKnobRef 	mUrbanKnob;
+
+
+		ofFbo 			mBackgroundAlpha;
+
 
 };
