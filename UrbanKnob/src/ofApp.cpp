@@ -37,6 +37,28 @@ void ofApp::setup() {
   ofClear(ofColor(0, 0, 0, 255));
   mBackgroundAlpha.end();
 
+  //font types
+  ofTrueTypeFont::setGlobalDpi(200);
+
+  mVerdana.load("verdana.ttf", 6, true, true);
+  mVerdana.setLineHeight(8.0f);
+  mVerdana.setLetterSpacing(1.037);
+
+
+}
+
+void ofApp::drawListTypes(){
+  int i = 0;
+  for(auto & color : mAmTypes){
+    ofSetColor(color);
+    float x = 80;
+    float y = 50 + 40 *i;
+    ofDrawRectangle(glm::vec2(x, y), 30, 30);
+    ofSetColor(255);
+    mVerdana.drawString(to_string(i), x - 20, y + 20);
+    i++;
+  }
+
 }
 
 //--------------------------------------------------------------
@@ -84,6 +106,7 @@ void ofApp::draw() {
   ofSetColor(255);
   mBackgroundAlpha.draw(0, 0);
 
+  //drawListTypes();
 
 }
 
@@ -91,6 +114,15 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
   if(key == 'p'){
     mEnableParticles = !mEnableParticles;
+  }
+  if(key  == 'a'){
+    mUrbanKnob->incDraw();
+  }
+  if(key  == 'z'){
+    mUrbanKnob->toogleContour();
+  }
+  if(key  == 'x'){
+    mUrbanKnob->toogleCenter();
   }
 }
 

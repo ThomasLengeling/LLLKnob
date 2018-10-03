@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-
+#include "ofxPathFitter.h"
+#include "CommonTypes.h"
+#include "GuiIndicator.h"
 
 class GuiKnob;
 
@@ -10,10 +12,7 @@ typedef std::shared_ptr<GuiKnob> GuiKnobRef;
 class GuiKnob{
 public:
 
-    GuiKnob(){
-      mRad = 50;
-      mNumDiv = 10;
-    }
+    GuiKnob();
 
     static GuiKnobRef create(){
         return std::make_shared<GuiKnob>();
@@ -22,7 +21,14 @@ public:
     void draw();
     void drawArc();
     void drawCircle();
-    void drawArcPath();
+
+    void drawBlobPath();
+    void drawBlob();
+
+    void drawCenter();
+    void drawRotation();
+
+    void drawIndictor(float x, float y);
 
     void setRad(float rad);
     void setPosition(glm::vec2 pos);
@@ -33,19 +39,27 @@ public:
 private:
 
   //position of the knob
-  glm::vec2 mPos;
+  glm::vec2   mPos;
 
   // size of the knob
-  float     mRad;
+  float       mRad;
 
   //number of divisions of the knob
-  int       mNumDiv;
+  int         mNumDiv;
 
+  //range of change
+  float       mRange;
 
-  float     mRange;
+  //values to stop min and max
+  ofVec2f     mRangeStop;
 
+  //poly line
+  ofPolyline  mLines;
+  vector<BezPoint> mLineBez;
 
-  //values
-  ofVec2f   mRangeStop;
+  //curent idex of the rotation
+  int mCurrentId;
+
+  GuiIndicatorRef mIndicator;
 
 };

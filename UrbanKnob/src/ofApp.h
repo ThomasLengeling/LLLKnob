@@ -28,17 +28,19 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-
-
 		//particle physics
 		ofxBox2d        box2d;   // the box2d world
 		std::vector     <std::shared_ptr<ofxBox2dCircle> > circles; // default box2d circles
 		bool					  mEnableParticles;
 
-		UrbanKnobRef 	mUrbanKnob;
+		UrbanKnobRef 		mUrbanKnob;
 
+		ofFbo 					mBackgroundAlpha;
 
-		ofFbo 			mBackgroundAlpha;
+		std::vector<ofColor> mAmTypes;
 
+		ofTrueTypeFont	mVerdana;
+
+		void drawListTypes();
 
 };

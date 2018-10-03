@@ -19,6 +19,11 @@ public:
     void draw();
     void update();
 
+    void incDraw();
+
+    void toogleContour(){mEnableContour = !mEnableContour;}
+    void toogleCenter(){mEnableCenter = !mEnableCenter;}
+
     //set draw center position
     void setPosition(glm::vec2 pos);
     void setRigs(float inner, float outer);
@@ -35,4 +40,8 @@ private:
     GuiKnobRef  	mInnerKnob;
     GuiKnobRef  	mOuterKnob;
 
+    //draw enables
+    int mDrawType;
+    bool mEnableContour;
+    bool mEnableCenter;
 };

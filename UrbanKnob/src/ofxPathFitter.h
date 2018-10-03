@@ -35,14 +35,14 @@ class ofxPathFitter {
 public:
     // Simplify a Bezier line
 	static vector<BezPoint> simplify(ofPolyline line, double tolerance = 2.5);
-	static vector<BezPoint> simplify(vector<ofPoint> pts, bool isClosed, double tolerance = 2.5);
+	static vector<BezPoint> simplify(ofPolyline pts, bool isClosed, double tolerance = 2.5);
 private:
     vector<ofPoint> points;
     bool closed;
 
     ~ofxPathFitter();
     ofxPathFitter();
-    ofxPathFitter(vector<ofPoint> pts, bool isClosed);
+    ofxPathFitter(vector<glm::vec3> pts, bool isClosed);
 
     // Simplify the Bezier line from an existing ofxPathFitter instance
 	vector<BezPoint> fit(double error = 2.5);

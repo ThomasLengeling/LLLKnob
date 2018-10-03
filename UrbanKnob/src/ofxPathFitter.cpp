@@ -39,9 +39,14 @@ BezPoint BezPoint::handlesAbsolute() {
 
 ofxPathFitter::~ofxPathFitter() {}
 ofxPathFitter::ofxPathFitter() {}
-ofxPathFitter::ofxPathFitter(vector<ofPoint> pts, bool isClosed)
+ofxPathFitter::ofxPathFitter(vector<glm::vec3> pts, bool isClosed)
 {
-    points = pts;
+    for(auto & ps : pts){
+      points.push_back(ps);
+  //std::cout<<ps.x<<std::endl;
+  }
+
+  //  points = pts;
     closed = isClosed;
 
     if (closed) {
@@ -54,8 +59,8 @@ vector<BezPoint> ofxPathFitter::simplify(ofPolyline line, double tolerance) {
 	return simplify(line.getVertices(), line.isClosed(), tolerance);
 }
 
-vector<BezPoint> ofxPathFitter::simplify(vector<ofPoint> pts, bool isClosed, double tolerance) {
-	ofxPathFitter lineFitter(pts, isClosed);
+vector<BezPoint> ofxPathFitter::simplify(ofPolyline pts, bool isClosed, double tolerance) {
+	ofxPathFitter lineFitter(pts.getVertices(), isClosed);
 	return lineFitter.fit(tolerance);
 }
 
